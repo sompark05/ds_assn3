@@ -31,28 +31,23 @@ private:
   int length;
 };
 
+// const char *const TASK_1_DEFAULT_ARGUMENT =
+//     "[('insertion',42), ('insertion',20), ('insertion',17), ('insertion',13),
+//     "
+//     "('insertion',28), ('insertion',14), ('bubbleSort',NULL)]";
 const char *const TASK_1_DEFAULT_ARGUMENT =
-    "[('insertion',42), ('bubbleSort',NULL)]";
-/*
-const char *const TASK_1_DEFAULT_ARGUMENT =
-    "[('insertion',42), ('insertion',20), ('insertion',17), ('insertion',13), "
-    "('insertion',28), ('insertion',14), ('bubbleSort',NULL)]";
-*/
+    "[('insertion',17), ('insertion',20), ('insertion',2), ('insertion',21), "
+    "('insertion',4), ('bubbleSort',NULL)]";
+
 const char *const TASK_2_DEFAULT_ARGUMENT =
     "[('insertion',56),('insertion',42), ('insertion',20),('insertion',17), "
     "('insertion',13),('insertion',28), ('insertion',14),('mergeSort',NULL)]";
-// const char *const TASK_3_DEFAULT_ARGUMENT =
-//     "[('insertion',4), ('insertion',6), ('insertion',6), ('insertion',7), "
-//     "('deletion',7),('sum', 2)]";
-const char *const TASK_3_DEFAULT_ARGUMENT =
-    "[('insertion',4), ('insertion',2), ('sum', 1), ('insertion',10), "
-    "('insertion',9), ('insertion',15), ('insertion',1), ('print', NULL), "
-    "('deletion',1), ('deletion',4), ('print', NULL), ('deletion',10), ('sum', "
-    "5), ('print', "
-    "NULL)]";
 
-// const char *const TASK_4_DEFAULT_ARGUMENT = "aabbbccccddddd";
-const char *const TASK_4_DEFAULT_ARGUMENT = "aabbbccccdddddeeffffgggg";
+const char *const TASK_3_DEFAULT_ARGUMENT =
+    "[('insertion',4), ('insertion',6), ('insertion',6), ('insertion',7), "
+    "('deletion',7),('sum', 2)]";
+
+const char *const TASK_4_DEFAULT_ARGUMENT = "aabbbccccddddd";
 const char *const TASK_5_DEFAULT_ARGUMENT = "[('M',4), ('insertion',32615)]";
 const char *const TASK_6_DEFAULT_ARGUMENT =
     "[('M',4), ('k',3), ('d',2), ('insertion',32615), ('insertion',315), "

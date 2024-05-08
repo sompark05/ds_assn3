@@ -21,11 +21,18 @@ void sortAlg::printArray(ofstream &fout) {
 void sortAlg::bubbleSort(ofstream &fout) {
   /////////////////////////////////////////////////////////
   //////////  TODO: Implement From Here      //////////////
+  bool swapped;
   for (int i = arr_size - 1; i > 0; i--) {
+    swapped = false;
     for (int j = arr_size - 1; j > arr_size - i - 1; j--) {
       if (arr[j] < arr[j - 1]) {
         swap(arr[j], arr[j - 1]);
+        swapped = true;
       }
+    }
+
+    if (!swapped) {
+      break;
     }
     printArray(fout);
   }
@@ -85,6 +92,17 @@ void sortAlg::mergeSort(ofstream &fout, int left, int right) {
   /////////////////////////////////////////////////////////
   //////////  TODO: Implement From Here      //////////////
   for (int length = 1; length < arr_size; length *= 2) {
+
+    // check if sorted
+    for (int i = 0; i < arr_size; i++) {
+      if (i == arr_size - 1) {
+        return;
+      }
+      if (arr[i] < arr[i + 1]) {
+        break;
+      }
+    }
+
     for (int index = 0; index < arr_size; index += 2 * length) {
       int left = index;
       int mid = min(index + length - 1, arr_size - 1);
@@ -92,6 +110,7 @@ void sortAlg::mergeSort(ofstream &fout, int left, int right) {
 
       merge(left, mid, end);
     }
+
     printArray(fout);
   }
   ///////////      End of Implementation      /////////////

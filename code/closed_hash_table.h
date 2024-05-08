@@ -1,35 +1,34 @@
 #pragma once
+#include "closed_hash_function.h"
 #include <iostream>
 #include <string>
-#include "closed_hash_function.h"
 using namespace std;
 
-enum ClosedTableState
-{
-    CLOSED_EMPTY,
-    CLOSED_OCCUPIED,
+enum ClosedTableState {
+  CLOSED_EMPTY,
+  CLOSED_OCCUPIED,
 };
 
-class ClosedHashTable
-{
+class ClosedHashTable {
 public:
-    ClosedHashTable(int table_size, int k, int d1, ClosedHashFunction *hf);
-    ~ClosedHashTable();
+  ClosedHashTable(int table_size, int k, int d1, ClosedHashFunction *hf);
+  ~ClosedHashTable();
 
-    void print_table(ostream &out);
-    void insert(int key);
+  void print_table(ostream &out);
+  void insert(int key);
 
 private:
-    const int table_size;
-    const int k;
-    const int d1;
-    ClosedHashFunction *hf;
-    int *table;
-    ClosedTableState *states;
-
-    /////////////////////////////////////////////////////////
-    //////  TODO: Add private members if required ///////////
-
-    ///////////      End of Implementation      /////////////
-    /////////////////////////////////////////////////////////
+  const int table_size;
+  const int k;
+  const int d1;
+  ClosedHashFunction *hf;
+  int *table;
+  ClosedTableState *states;
+  int *random_per;
+  bool failed;
+  /////////////////////////////////////////////////////////
+  //////  TODO: Add private members if required ///////////
+  void shift_register(int *random_per, int k, int d1);
+  ///////////      End of Implementation      /////////////
+  /////////////////////////////////////////////////////////
 };

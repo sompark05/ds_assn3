@@ -44,7 +44,6 @@ void AVLTree::insert(char letter) {
   } else {
     Node *current = _root;
     while (true) {
-      cout << "inside loop" << endl;
       if (node->count <
           current->count) { // when node->count is smalller than current->count
         if (current->left == NULL) {
@@ -87,45 +86,6 @@ void AVLTree::insert(char letter) {
   updateBF(_root);
   // check balance
   checkBalance(_root, node->count, letter);
-  cout << "finished check balance" << endl;
-
-  // if (violation != NULL) {
-  //   cout << "violation: " << violation << "  " << violation->key << endl;
-  // }
-  // // LL RR LR RL if necessary
-  // if (violation != NULL) {
-  //   cout << "where" << violation->right << endl;
-  //   if (violation->right == NULL) {
-  //     /********** RR **********/
-  //     if (violation->left->right == NULL) {
-  //       cout << "RR" << endl;
-  //       rotateRight(violation);
-  //     }
-  //     /********** LR **********/
-  //     else {
-  //       cout << "LR" << endl;
-  //       rotateLeft(violation->left);
-  //       rotateRight(violation);
-  //     }
-  //   }
-  //   cout << "here?" << endl;
-  //   if (violation->left == NULL) {
-  //     /********** LL **********/
-  //     if (violation->right->left == NULL) {
-
-  //       cout << "before" << endl;
-  //       rotateLeft(violation);
-  //       cout << "after" << endl;
-  //     }
-  //     /********** RL **********/
-  //     else {
-  //       cout << "RL" << endl;
-  //       rotateRight(violation->right);
-  //       rotateLeft(violation);
-  //     }
-  //   }
-  // }
-  cout << "root: " << _root << " " << _root->key << endl;
   return;
   ///////////      End of Implementation      /////////////
   /////////////////////////////////////////////////////////
@@ -283,26 +243,21 @@ void AVLTree::updateBF(Node *node) {
 void AVLTree::restore_avl(Node *violation) {
   updateHeight(_root);
   updateBF(_root);
-  cout << "updated height" << endl;
+  
 
   if (violation->bf > 1) { // right or left-right rotation
     if (violation->left->bf == 1) {
       rotateRight(violation);
     } else {
-      cout << "rotate left " << endl;
       rotateLeft(violation->left);
-      cout << "and then rotate right" << endl;
       rotateRight(violation);
     }
   } else {
-    cout << "It's a me mario" << endl;
     if (violation->right->bf == -1) {
       rotateLeft(violation);
     } else {
-      cout << "here" << endl;
       rotateRight(violation->right);
       rotateLeft(violation);
-      cout << "not here" << endl;
     }
   }
   updateHeight(_root);
@@ -347,69 +302,23 @@ void AVLTree::checkBalance(Node *current, int count, int letter) {
   }
 
   bf = left_height - right_height;
-  cout << char(current->key) << " bf: " << bf << endl;
   if (bf > 1 || bf < -1) {
     restore_avl(current);
   }
 }
 
-// Node *AVLTree::checkBalance(Node *node, int count, int letter) {
-//   if (node == NULL) {
-//     return NULL;
-//   }
-
-//   int bf, left_height, right_height;
-
-//   if (node->left == NULL) {
-//     left_height = -1;
-//   } else {
-//     left_height = node->left->height;
-//   }
-//   if (node->right == NULL) {
-//     right_height = -1;
-//   } else {
-//     right_height = node->right->height;
-//   }
-
-//   bf = left_height - right_height;
-//   cout << node << " " << node->key << "  bf: " << bf << endl;
-//   cout << "left_height: " << left_height << endl;
-//   cout << "right_height: " << right_height << endl;
-//   cout << endl;
-//   if (bf < -1 || bf > 1) {
-//     return node;
-//   } else {
-//     if (count < node->count) {
-//       return checkBalance(node->left, count, letter);
-//     } else if (count > node->count) {
-//       return checkBalance(node->right, count, letter);
-//     } else {
-//       if (letter < node->key) {
-//         return checkBalance(node->left, count, letter);
-//       } else if (letter > node->key) {
-//         return checkBalance(node->right, count, letter);
-//       }
-//       return NULL;
-//     }
-//   }
-// }
-
 void AVLTree::rotateLeft(Node *node) {
 
   Node *parent = search(NULL, _root, node->count, node->key);
   Node *temp = node;
-
-  cout << "node: " << node << " " << node->key << endl;
+  
   if (parent == NULL) {
     _root = node->right;
     node->right = node->right->left;
     _root->left = temp;
   } else {
 
-    cout << "parent: " << parent << " " << parent->key << endl;
-
     if (parent->right != NULL && parent->right->key == node->key) {
-      cout << "it should be here" << endl;
       parent->right = node->right;
       node->right = node->right->left;
       parent->right->left = temp;
@@ -421,21 +330,17 @@ void AVLTree::rotateLeft(Node *node) {
       parent->left->left = temp;
     }
   }
-  cout << endl;
 }
 void AVLTree::rotateRight(Node *node) {
   Node *parent = search(NULL, _root, node->count, node->key);
   Node *temp = node;
-  cout << "root: " << _root << " " << _root->key << endl;
-  cout << "luigi" << endl;
+
   if (parent == NULL) {
-    cout << "parent is null" << endl;
     _root = node->left;
     node->left = node->left->right;
     _root->right = temp;
   } else {
     if (parent->right != NULL && parent->right->key == node->key) {
-      cout << "asdlfkajsdlf" << endl;
       parent->right = node->left;
       node->left = node->left->right;
       parent->right->right = temp;

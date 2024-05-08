@@ -236,7 +236,6 @@ void task_4(ofstream &fout, string expression) {
 
     for (char letter : expression) {
       tree.insert(tolower(letter));
-      cout << "inserted " << letter << endl;
     }
 
     fout << "Frequencies of alphabetic letters in the given string" << endl;
